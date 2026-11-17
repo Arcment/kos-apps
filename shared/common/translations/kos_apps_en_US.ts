@@ -902,7 +902,7 @@
     <message><source>Add tags</source><translation>Add tags</translation></message>
     <message><source>Flag reminder</source><translation>Flag reminder</translation></message>
 </context>
-<context>
+  <context>
     <name>CalendarSettingsDialog</name>
     <message>
       <source>Calendar settings</source>
@@ -911,6 +911,30 @@
     <message>
       <source>Close settings</source>
       <translation>Close settings</translation>
+    </message>
+    <message>
+      <source>Text size</source>
+      <translation>Text size</translation>
+    </message>
+    <message>
+      <source>Adjust text throughout Calendar and Reminders. Medium keeps the original size.</source>
+      <translation>Adjust text throughout Calendar and Reminders. Medium keeps the original size.</translation>
+    </message>
+    <message>
+      <source>Extra large</source>
+      <translation>Extra large</translation>
+    </message>
+    <message>
+      <source>Large</source>
+      <translation>Large</translation>
+    </message>
+    <message>
+      <source>Medium</source>
+      <translation>Medium</translation>
+    </message>
+    <message>
+      <source>Small</source>
+      <translation>Small</translation>
     </message>
     <message>
       <source>Color scheme</source>

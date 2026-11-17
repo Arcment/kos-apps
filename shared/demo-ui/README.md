@@ -5,8 +5,9 @@ This module packages the required controls from `nextkdeAppDemo/shared/qml` unde
 apps' legacy `Kos.Ui` module. The baseline QML, GLSL and QSB assets come from the canonical Demo sources;
 `upstream-sha256.json` retains the hashes of that synchronized baseline.
 `local-patches.json` lists the explicitly maintained application-side changes
-pending synchronization with the canonical library. Files not listed there
-remain byte-for-byte copies. The namespace/build metadata are packaging additions. Preserve the GPL-3.0
+pending synchronization with the canonical library. The list records this change series, including its application-source baseline
+hashes; earlier extraction adapters (such as the icon facade) retain their
+existing provenance. The namespace/build metadata are packaging additions. Preserve the GPL-3.0
 license of the parent project and upstream. Prefer updating the canonical Demo first and syncing source/assets and hashes
 together. When carrying an application-side fix, list it in `local-patches.json`
 without rewriting the original baseline hashes; remove that entry once the

@@ -15,8 +15,8 @@ KosDialog {
     CalendarStyle { id: design }
     parent: Overlay.overlay
     anchors.centerIn: parent
-    width: Math.min(550, parent ? parent.width - 32 : 550)
-    height: Math.min(650, parent ? parent.height - 32 : 650)
+    width: Math.min(AppTheme.textExtent(550), parent ? parent.width - 32 : 550)
+    height: Math.min(AppTheme.textExtent(650), parent ? parent.height - 32 : 650)
     popupType: Popup.Item
     modal: true
     focus: true
@@ -45,25 +45,25 @@ KosDialog {
     component Heading: Label {
         Layout.fillWidth: true
         color: design.labelPrimary
-        font.pixelSize: 14
+        font.pixelSize: AppTheme.fontSize(14)
         font.weight: Font.DemiBold
         wrapMode: Text.Wrap
     }
     component Help: Label {
         Layout.fillWidth: true
         color: design.labelSecondary
-        font.pixelSize: 11
+        font.pixelSize: AppTheme.fontSize(11)
         wrapMode: Text.Wrap
     }
     component TextAction: Demo.LiquidActionButton {
         materialForm: true
-        font.pixelSize: 13
+        font.pixelSize: AppTheme.fontSize(13)
         implicitHeight: Math.max(34, contentItem.implicitHeight + 16)
         cornerRadius: 8
     }
     component Choice: Demo.LiquidSegmentedControl {
         Layout.fillWidth: true
-        Layout.preferredHeight: 32
+        Layout.preferredHeight: Math.max(32, minimumLabelHeight)
         materialForm: true
         backgroundColor: design.controlFill
         selectionColor: AppTheme.dark ? "#55555B" : "#FFFFFF"
@@ -78,7 +78,7 @@ KosDialog {
             width: Math.max(0, closeButton.x - x - 16)
             text: root.title
             color: design.labelPrimary
-            font.pixelSize: 20
+            font.pixelSize: AppTheme.fontSize(20)
             font.weight: Font.DemiBold
             wrapMode: Text.Wrap
         }
@@ -108,6 +108,66 @@ KosDialog {
             Section {
                 contentItem: ColumnLayout {
                     spacing: 10
+                    Heading { text: qsTr("Text size") }
+                    Help { text: qsTr("Adjust text throughout Calendar and Reminders. Medium keeps the original size.") }
+                    GridLayout {
+                        Layout.fillWidth: true
+                        columns: 2
+                        columnSpacing: 8; rowSpacing: 8
+                        Repeater {
+                            model: [
+                                {key: "extra-large", label: qsTr("Extra large")},
+                                {key: "large", label: qsTr("Large")},
+                                {key: "medium", label: qsTr("Medium")},
+                                {key: "small", label: qsTr("Small")}
+                            ]
+                            delegate: AbstractButton {
+                                id: option
+                                required property var modelData
+                                objectName: "textSize_" + modelData.key
+                                Layout.fillWidth: true
+                                Layout.preferredWidth: 1
+                                implicitHeight: Math.max(44, optionLabel.implicitHeight + 20)
+                                checked: root.settings ? root.settings.textSize === modelData.key : modelData.key === "medium"
+                                Accessible.role: Accessible.RadioButton
+                                Accessible.name: modelData.label
+                                Accessible.checked: checked
+                                onClicked: if (root.settings) root.settings.textSize = modelData.key
+                                background: Rectangle {
+                                    radius: 8
+                                    color: option.checked ? AppTheme.withAlpha(design.accent, AppTheme.dark ? 0.18 : 0.07)
+                                        : option.hovered ? design.rowHoverFill : design.sidebarPlane
+                                    border.width: option.checked || option.visualFocus ? 1.5 : 1
+                                    border.color: option.checked || option.visualFocus ? design.accent : design.separator
+                                }
+                                contentItem: Item {
+                                    Rectangle {
+                                        x: 12; anchors.verticalCenter: parent.verticalCenter
+                                        width: 16; height: 16; radius: 8
+                                        color: option.checked ? design.accent : "transparent"
+                                        border.width: option.checked ? 0 : 1
+                                        border.color: design.labelSecondary
+                                        Rectangle { anchors.centerIn: parent; width: 6; height: 6; radius: 3; color: "white"; visible: option.checked }
+                                    }
+                                    Label {
+                                        id: optionLabel
+                                        x: 38; width: Math.max(0, parent.width - x - 12)
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        text: option.modelData.label
+                                        font.pixelSize: AppTheme.fontSize(13)
+                                        font.weight: option.checked ? Font.DemiBold : Font.Normal
+                                        color: design.labelPrimary
+                                        wrapMode: Text.Wrap
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            Section {
+                contentItem: ColumnLayout {
+                    spacing: 10
                     Heading { text: qsTr("Color scheme") }
                     Help { text: qsTr("Use the same light or dark appearance as the calendar.") }
                     Choice {
@@ -131,8 +191,8 @@ KosDialog {
                     }
                     RowLayout {
                         Layout.fillWidth: true
-                        Label { Layout.fillWidth: true; text: qsTr("Material opacity"); color: design.labelPrimary; font.pixelSize: 12; wrapMode: Text.Wrap }
-                        Label { text: Math.round(opacitySlider.value * 100) + "%"; color: design.labelSecondary; font.pixelSize: 12 }
+                        Label { Layout.fillWidth: true; text: qsTr("Material opacity"); color: design.labelPrimary; font.pixelSize: AppTheme.fontSize(12); wrapMode: Text.Wrap }
+                        Label { text: Math.round(opacitySlider.value * 100) + "%"; color: design.labelSecondary; font.pixelSize: AppTheme.fontSize(12) }
                     }
                     Slider {
                         id: opacitySlider
@@ -162,7 +222,7 @@ KosDialog {
                             spacing: 12
                             ColumnLayout {
                                 Layout.fillWidth: true
-                                Label { Layout.fillWidth: true; text: modelData.label; color: design.labelPrimary; font.pixelSize: 13; wrapMode: Text.Wrap }
+                                Label { Layout.fillWidth: true; text: modelData.label; color: design.labelPrimary; font.pixelSize: AppTheme.fontSize(13); wrapMode: Text.Wrap }
                                 Help { text: modelData.help }
                             }
                             Switch {
@@ -189,7 +249,7 @@ KosDialog {
             TextAction {
                 objectName: "settingsReset"
                 text: qsTr("Restore defaults")
-                onClicked: if (root.settings) { root.settings.resetAppearance() }
+                onClicked: if (root.settings) { root.settings.resetAppearance(); root.settings.textSize = "medium" }
             }
             Item { Layout.fillWidth: true }
             TextAction { objectName: "settingsDone"; text: qsTr("Done"); highlighted: true; onClicked: root.close() }

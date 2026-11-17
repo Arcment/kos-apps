@@ -2859,7 +2859,7 @@
     <message><source>Add tags</source><translation>添加标签</translation></message>
     <message><source>Flag reminder</source><translation>旗标</translation></message>
 </context>
-<context>
+  <context>
     <name>CalendarSettingsDialog</name>
     <message>
       <source>Calendar settings</source>
@@ -2868,6 +2868,30 @@
     <message>
       <source>Close settings</source>
       <translation>关闭设置</translation>
+    </message>
+    <message>
+      <source>Text size</source>
+      <translation>字号</translation>
+    </message>
+    <message>
+      <source>Adjust text throughout Calendar and Reminders. Medium keeps the original size.</source>
+      <translation>调整日历和提醒事项的文字大小。“中”保持原有字号。</translation>
+    </message>
+    <message>
+      <source>Extra large</source>
+      <translation>特大</translation>
+    </message>
+    <message>
+      <source>Large</source>
+      <translation>大</translation>
+    </message>
+    <message>
+      <source>Medium</source>
+      <translation>中</translation>
+    </message>
+    <message>
+      <source>Small</source>
+      <translation>小</translation>
     </message>
     <message>
       <source>Color scheme</source>

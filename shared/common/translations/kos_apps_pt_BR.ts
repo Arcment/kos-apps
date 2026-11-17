@@ -1862,7 +1862,7 @@
       <translation>Pesquisar todas as unidades</translation>
     </message>
   </context>
-<context>
+  <context>
     <name>CalendarSettingsDialog</name>
     <message>
       <source>Calendar settings</source>
@@ -1871,6 +1871,30 @@
     <message>
       <source>Close settings</source>
       <translation>Fechar configurações</translation>
+    </message>
+    <message>
+      <source>Text size</source>
+      <translation>Tamanho do texto</translation>
+    </message>
+    <message>
+      <source>Adjust text throughout Calendar and Reminders. Medium keeps the original size.</source>
+      <translation>Ajuste o texto no calendário e nos lembretes. Médio mantém o tamanho original.</translation>
+    </message>
+    <message>
+      <source>Extra large</source>
+      <translation>Muito grande</translation>
+    </message>
+    <message>
+      <source>Large</source>
+      <translation>Grande</translation>
+    </message>
+    <message>
+      <source>Medium</source>
+      <translation>Médio</translation>
+    </message>
+    <message>
+      <source>Small</source>
+      <translation>Pequeno</translation>
     </message>
     <message>
       <source>Color scheme</source>
